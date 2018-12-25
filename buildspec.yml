@@ -6,10 +6,10 @@ phases:
       - dotnet build
   install:
     commands:
-      - aws cloudformation package --template-file serverless.template --s3-bucket zombie-lambda-pipeline --output-template-file outputSamTemplate.yaml
+      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket zombie-lambda-pipeline --output-template-file outputSamTemplate.yaml
 
 artifacts:
   type: zip
   files:
-    - serverless.template
+    - samTemplate.yaml
     - outputSamTemplate.yaml
