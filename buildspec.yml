@@ -1,15 +1,17 @@
 version: 0.2
 phases:
-  build:
-    commands:
-      - dotnet restore
-      - dotnet build
   install:
     commands:
-      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket zombie-lambda-pipeline --output-template-file outputSamTemplate.yaml
+      - dotnet tool install -g Amazon.Lambda.Tools
+      - dotnet restore
+      - dotnet build
+  pre_build:
+    commands:
+      - dotnet restore
+  build:
+    commands:
+      - dotnet lambda package-ci --s3-bucket zombie-lambda-pipeline --output-template updated-serverless.template
 
 artifacts:
-  type: zip
   files:
-    - samTemplate.yaml
-    - outputSamTemplate.yaml
+    - updated-serverless.template
