@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: .Net Lambda Country List
+Resources:
+  CountryManager:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: CountryManager
+      Handler: CountryManager::CountryManager.Functions::Get
+      Runtime: dotnetcore2.1
+      Description: 'Lambda function for CD Demo'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::726803073979:role/lambda-basic'
+      Events:
+        getCountryAPI:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+      Environment:
+        Variables:
+          REGION: us-east-1
