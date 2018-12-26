@@ -5,16 +5,14 @@ phases:
       - dotnet tool install -g Amazon.Lambda.Tools
       - dotnet restore
       - dotnet build
-  pre_build:
-    commands:
-      - dotnet restore
   build:
     commands:
-      - export PATH="$PATH:/root/.dotnet/tools"
+      - cd AWSServerlessSample
       - dotnet lambda package-ci --s3-bucket zombie-lambda-pipeline --output-template updated-serverless.template
 
 artifacts:
+  discard-paths: yes
   files:
-    - updated-serverless.template
-discard-paths: yes
+    - ./AWSServerlessSample/updated-serverless.template
+
 

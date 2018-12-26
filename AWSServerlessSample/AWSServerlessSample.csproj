@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!--Change to version 2.2.0 of Amazon.Lambda.Tools to get .NET Core 2.1 support for Lambda AWS-->
+    <!--This will be gone once the dotnet lambda CLI supports Global Tools.-->
+    <!--Tells the AWS Toolkit for Visual Studio that this is an AWS Lambda Project.-->
     <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="2.2.0" />
   </ItemGroup>
 
