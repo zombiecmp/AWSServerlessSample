@@ -10,8 +10,11 @@ phases:
       - dotnet restore
   build:
     commands:
+      - export PATH="$PATH:/root/.dotnet/tools"
       - dotnet lambda package-ci --s3-bucket zombie-lambda-pipeline --output-template updated-serverless.template
 
 artifacts:
   files:
     - updated-serverless.template
+discard-paths: yes
+
